@@ -1,6 +1,6 @@
 {
   "name": "@dsh-external/dsh-hide-reasoning",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Collapse the assistant reasoning (思考) disclosure rows into collapsible summary cards in the DeepSeek Harness conversation view.",
   "type": "module",
   "main": "lib/index.js",
