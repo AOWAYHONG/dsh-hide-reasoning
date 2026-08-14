@@ -1,7 +1,7 @@
 # @dsh-external/dsh-hide-reasoning
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.4.0-4d6bfe.svg)](https://github.com/AOWAYHONG/dsh-hide-reasoning/releases)
+[![Version](https://img.shields.io/badge/version-0.4.1-4d6bfe.svg)](https://github.com/AOWAYHONG/dsh-hide-reasoning/releases)
 [![CI](https://github.com/AOWAYHONG/dsh-hide-reasoning/actions/workflows/ci.yml/badge.svg)](https://github.com/AOWAYHONG/dsh-hide-reasoning/actions/workflows/ci.yml)
 [![GitHub stars](https://img.shields.io/github/stars/AOWAYHONG/dsh-hide-reasoning?style=social)](https://github.com/AOWAYHONG/dsh-hide-reasoning)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/AOWAYHONG/dsh-hide-reasoning/pulls)
@@ -60,7 +60,7 @@ DeepSeek Harness 客户端插件：把对话里助手的「思考」推理过程
 |---|---|---|
 | **Context** | 推理正文长度 | token 估算：CJK 字符（中日韩）按 1 token/字，其余字符按 4 字符/1 token，向上取整。例如 18.6k 表示估算约 1.86 万 token。 |
 | **Reasoning** | 推理正文结构 | 「阶段数」：优先统计显式的 `Step 1 / Stage 2 / 第N步 / 步骤N` 标记；没有标记时按空行分隔的段落数计，上限 20（防止把散文段落误报成大量阶段）。 |
-| **Tools** | 推理正文关键词 | 正则检测正文中出现的工具名（Search / Python / Bash / Shell / Grep / curl / ffmpeg / Browser / Subagent / Filesystem），最多列 4 个。注意：这是**文本提及**检测，非真实工具调用记录，可能把散文中的「search」等普通词计入。 |
+| **Tools** | 对话轨迹中的真实工具调用 | **优先**从对话轨迹读取真实工具调用记录（DSH 渲染的 `data-tool` flow item：read / search / bash / write / edit / code / web / files / subagent 等，含递归子调用），同回合内去重、上限 6 个；仅当该行无轨迹上下文（如旧会话）时才回退到推理正文关键词检测。注：轨迹检测反映真实调用；文本提及回退可能把散文中的「search」等普通词计入。 |
 | **Completion** | DOM `data-state` 变化 | 插件观测到该行 `running → ok` 的**实测毫秒差**。插件加载前就已完成的旧消息无真实耗时，显示「—」；运行中显示「…」。 |
 
 ## 可扩展方向（欢迎 PR / 自行添加）
