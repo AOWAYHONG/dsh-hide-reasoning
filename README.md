@@ -1,5 +1,12 @@
 # @dsh-external/dsh-hide-reasoning
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.4.0-4d6bfe.svg)](https://github.com/AOWAYHONG/dsh-hide-reasoning/releases)
+[![GitHub stars](https://img.shields.io/github/stars/AOWAYHONG/dsh-hide-reasoning?style=social)](https://github.com/AOWAYHONG/dsh-hide-reasoning)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/AOWAYHONG/dsh-hide-reasoning/pulls)
+
+**English**: [README.en.md](README.en.md)
+
 DeepSeek Harness 客户端插件：把对话里助手的「思考」推理过程折叠行，替换为
 **可折叠摘要卡片**（推理本身照常进行、照常流式输出）。
 
