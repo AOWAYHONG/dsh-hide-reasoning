@@ -51,16 +51,18 @@ jobs:
           PY
 
       - name: Verify package.json is valid JSON
-        run: python3 -c "import json; json.load(open('package.json')); print('ok: package.json')"
+        run: |
+          python3 -c "import json; json.load(open('package.json')); print('ok: package.json')"
 
       - name: Verify cordis.patch.yml is valid YAML
-        run: python3 -c "
-import sys
-try:
-    import yaml
-except ImportError:
-    print('skip: pyyaml not installed')
-    sys.exit(0)
-yaml.safe_load(open('cordis.patch.yml'))
-print('ok: cordis.patch.yml')
-"
+        run: |
+          python3 - <<'PY'
+          import sys
+          try:
+              import yaml
+          except ImportError:
+              print('skip: pyyaml not installed')
+              sys.exit(0)
+          yaml.safe_load(open('cordis.patch.yml'))
+          print('ok: cordis.patch.yml')
+          PY
