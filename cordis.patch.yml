@@ -1,0 +1,4 @@
+# dsh-hide-reasoning bundle patch: mounts the plugin into a profile layer stack.
+- insert:
+    - id: hide-reasoning
+      name: '@dsh-external/dsh-hide-reasoning'
