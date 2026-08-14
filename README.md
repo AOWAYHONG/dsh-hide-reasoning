@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.4.0-4d6bfe.svg)](https://github.com/AOWAYHONG/dsh-hide-reasoning/releases)
+[![CI](https://github.com/AOWAYHONG/dsh-hide-reasoning/actions/workflows/ci.yml/badge.svg)](https://github.com/AOWAYHONG/dsh-hide-reasoning/actions/workflows/ci.yml)
 [![GitHub stars](https://img.shields.io/github/stars/AOWAYHONG/dsh-hide-reasoning?style=social)](https://github.com/AOWAYHONG/dsh-hide-reasoning)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/AOWAYHONG/dsh-hide-reasoning/pulls)
 

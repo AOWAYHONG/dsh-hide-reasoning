@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate plugin sources
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Syntax-check client.js (node --check)
+        run: node --check lib/client.js
+
+      - name: Syntax-check index.js (node --check)
+        run: node --check lib/index.js
+
+      - name: Syntax-check install.sh (bash -n)
+        run: bash -n install.sh
+
+      - name: Syntax-check uninstall.sh (bash -n)
+        run: bash -n uninstall.sh
+
+      - name: Syntax-check embedded Python probe blocks
+        run: |
+          set -e
+          python3 - <<'PY'
+          import re, sys
+          for path in ("install.sh",):
+              sh = open(path).read()
+              blocks = re.findall(r"<<'PY'\n(.*?)\nPY\n", sh, re.S)
+              if not blocks:
+                  print(f"warning: no python heredoc found in {path}")
+              for i, b in enumerate(blocks):
+                  try:
+                      compile(b, f"{path}#py{i}", "exec")
+                      print(f"ok: {path} python block {i}")
+                  except SyntaxError as e:
+                      print(f"FAIL: {path} python block {i}: {e}")
+                      sys.exit(1)
+          PY
+
+      - name: Verify package.json is valid JSON
+        run: python3 -c "import json; json.load(open('package.json')); print('ok: package.json')"
+
+      - name: Verify cordis.patch.yml is valid YAML
+        run: python3 -c "
+import sys
+try:
+    import yaml
+except ImportError:
+    print('skip: pyyaml not installed')
+    sys.exit(0)
+yaml.safe_load(open('cordis.patch.yml'))
+print('ok: cordis.patch.yml')
+"
