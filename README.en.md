@@ -7,6 +7,11 @@ presentation changes.
 
 [中文说明 (Chinese README)](README.md)
 
+## Authors
+
+- **AOWAYHONG** — plugin design, implementation and maintenance
+- **jbwu091-jdbsh** — co-author / collaborator
+
 ## What it looks like
 
 Each reasoning row collapses to a pink pill:
