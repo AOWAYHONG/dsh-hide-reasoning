@@ -48,7 +48,7 @@ Click to expand the summary card:
   |---|---|---|
   | **Context** | reasoning text length | token estimate = CJK chars ×1 + other chars ÷4, rounded. |
   | **Reasoning** | text structure | "stages": explicit `Step N` / `第N步` markers when present, otherwise blank-line paragraph count, capped at 20. |
-  | **Tools** | text keywords | regex scan for tool names (Search / Python / Bash / Shell / Grep / curl / ffmpeg / Browser / Subagent / Filesystem), max 4. **Mention detection, not real invocation records.** |
+  | **Tools** | real tool calls from the conversation trail | **Primary:** reads the real tool invocation records DSH renders as `data-tool` flow items (read / search / bash / write / edit / code / web / files / subagent etc., including recursive subcalls), deduped per turn, capped at 6. **Fallback:** only when the row has no trail context (e.g. legacy sessions) it falls back to regex scanning the reasoning text, which may count prose mentions of "search"/"python" etc. |
   | **Completion** | DOM `data-state` | measured ms between `running → ok` observed by the plugin. Already-finished rows show "—" (never a fabricated 0.0s); streaming rows show "…". |
 
 - **Live streaming** — stats and full text update during generation
